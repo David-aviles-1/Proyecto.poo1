@@ -24,29 +24,24 @@ public class login extends JFrame {
     private JPasswordField txcontrasena;
     private JButton btnSignIn;
 
-    
     public login() {
         super("Login - Reproductor");
 
-        
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBackground(new Color(25, 20, 30));
         panelPrincipal.setLayout(null); 
 
-        
         JPanel cardPanel = new JPanel();
         cardPanel.setBounds(40, 40, 355, 380);
         cardPanel.setBackground(new Color(45, 35, 55));
         cardPanel.setLayout(null);
 
-        
         JLabel lblTitulo = new JLabel("Bienvenido", SwingConstants.CENTER);
         lblTitulo.setForeground(Color.WHITE);
         lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 24));
         lblTitulo.setBounds(20, 30, 315, 35);
         cardPanel.add(lblTitulo);
 
-        
         txtUsuario = new JTextField();
         txtUsuario.setBounds(40, 100, 275, 40);
         txtUsuario.setBackground(new Color(70, 55, 80));
@@ -55,8 +50,7 @@ public class login extends JFrame {
         txtUsuario.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         cardPanel.add(txtUsuario);
 
-        
-        txcontrasena= new JPasswordField();
+        txcontrasena = new JPasswordField();
         txcontrasena.setBounds(40, 160, 275, 40);
         txcontrasena.setBackground(new Color(70, 55, 80));
         txcontrasena.setForeground(Color.WHITE);
@@ -64,7 +58,6 @@ public class login extends JFrame {
         txcontrasena.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         cardPanel.add(txcontrasena);
 
-        
         btnSignIn = new JButton("Ingresar");
         btnSignIn.setBounds(40, 230, 275, 42);
         btnSignIn.setBackground(Color.WHITE);
@@ -73,7 +66,6 @@ public class login extends JFrame {
         btnSignIn.setFocusPainted(false);
         cardPanel.add(btnSignIn);
 
-        
         btnSignIn.addActionListener(
                 new ActionListener() 
         {
@@ -83,8 +75,8 @@ public class login extends JFrame {
             }
         } 
         ); 
-       
-        JLabel lblRolInfo = new JLabel("Admin o usuario normal según tu cuenta", SwingConstants.CENTER);
+        
+        JLabel lblRolInfo = new JLabel("Admin o usuario normal segun tu cuenta", SwingConstants.CENTER);
         lblRolInfo.setForeground(new Color(170, 160, 180));
         lblRolInfo.setFont(new Font("SansSerif", Font.PLAIN, 11));
         lblRolInfo.setBounds(20, 290, 315, 20);
@@ -93,12 +85,13 @@ public class login extends JFrame {
         panelPrincipal.add(cardPanel);
         add(panelPrincipal);
     } 
+
     private void validarLogin() {
         String usuario = txtUsuario.getText().trim();
         String password = new String(txcontrasena.getPassword()).trim();
 
         if (usuario.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor llena todos los campos", "Atención", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor llena todos los campos", "Atencion", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -108,11 +101,17 @@ public class login extends JFrame {
         } else if (usuario.equalsIgnoreCase("usuario") && password.equals("usuario123")) {
             esAdmin = false;
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        JOptionPane.showMessageDialog(this, "¡Bienvenido! : " + (esAdmin ? "Administrador" : "Usuario Normal"));
-        this.dispose(); 
+        if (esAdmin) {
+            JOptionPane.showMessageDialog(this, "¡Bienvenido Administrador!");
+            this.dispose(); 
+        } else {
+            Reproductor ventanaUsuario = new Reproductor();
+            ventanaUsuario.setVisible(true);
+            this.dispose();
+        }
     }
-} 
+}
