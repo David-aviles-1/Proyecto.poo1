@@ -1,40 +1,26 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
+import control.Cancion;
+import control.ControladorCanciones;
+import java.awt.*;
+import javax.swing.*;
 
 public class PanelAgregar extends JPanel {
-
+    private final ControladorCanciones ctrl;
+    private final Runnable alCambiar;
     private final FormularioCancion formulario = new FormularioCancion(true);
 
-    public PanelAgregar() {
+    public PanelAgregar(ControladorCanciones ctrl, Runnable alCambiar) {
+        this.ctrl = ctrl;
+        this.alCambiar = alCambiar;
         setLayout(new BorderLayout(0, 14));
-        setBackground(new Color(18, 18, 20));
+        setBackground(EstiloUI.FONDO);
         setBorder(BorderFactory.createEmptyBorder(24, 28, 18, 24));
 
         JPanel titulo = new JPanel(new GridLayout(2, 1));
         titulo.setOpaque(false);
-        
-        JLabel lblTitulo = new JLabel("Agregar canción");
-        lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 26));
-        lblTitulo.setForeground(Color.WHITE);
-        
-        JLabel lblSub = new JLabel("Todos los campos son obligatorios.");
-        lblSub.setFont(new Font("SansSerif", Font.PLAIN, 13));
-        lblSub.setForeground(new Color(160, 160, 167));
-        
-        titulo.add(lblTitulo);
-        titulo.add(lblSub);
+        titulo.add(EstiloUI.etiqueta("Agregar canción", 26, Font.BOLD, EstiloUI.TEXTO));
+        titulo.add(EstiloUI.etiqueta("Todos los campos son obligatorios.", 13, Font.PLAIN, EstiloUI.TEXTO_SUAVE));
         add(titulo, BorderLayout.NORTH);
 
         JScrollPane scroll = new JScrollPane(formulario);
@@ -43,18 +29,12 @@ public class PanelAgregar extends JPanel {
         scroll.getViewport().setOpaque(false);
         scroll.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
+        EstiloUI.estilizarScroll(scroll);
         add(scroll, BorderLayout.CENTER);
 
-        JButton guardar = new JButton("Guardar canción");
-        guardar.setFocusPainted(false);
-        guardar.setBorderPainted(false);
-        guardar.setBackground(new Color(40, 120, 220));
-        guardar.setForeground(Color.WHITE);
-        guardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+        BotonPrimario guardar = new BotonPrimario("Guardar canción");
         guardar.setPreferredSize(new Dimension(170, 42));
-        guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guardar.addActionListener(e -> guardar());
-
         JPanel pie = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         pie.setOpaque(false);
         pie.add(guardar);
@@ -62,7 +42,15 @@ public class PanelAgregar extends JPanel {
     }
 
     private void guardar() {
-        javax.swing.JOptionPane.showMessageDialog(this, "¡Canción registrada visualmente con éxito!", "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        Cancion c = formulario.leerCancion();
+        String error = ctrl.agregarCancion(c, formulario.getImagenElegida(), formulario.getPdfElegido());
+        if (error != null) {
+            DialogoEstilo.mensaje(this, "No se pudo guardar", error);
+            return;
+        }
+        DialogoEstilo.mensaje(this, "Canción guardada", "\"" + c.getTitulo() + "\" se registró correctamente. "
+                + "Ya hay " + ctrl.total() + " canciones.");
         formulario.limpiar();
+        alCambiar.run();
     }
 }

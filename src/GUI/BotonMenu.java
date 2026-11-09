@@ -11,12 +11,9 @@ public class BotonMenu extends JButton {
     private boolean activo = false;
     private boolean encima = false;
     private final Color relleno;
-    private final Color textoNormal = Color.LIGHT_GRAY;
-    private final Color textoActivo = Color.WHITE;
 
     public BotonMenu(String texto) {
-        
-        this(texto, new Color(40, 40, 40));
+        this(texto, EstiloUI.TARJETA);
     }
 
     public BotonMenu(String texto, Color relleno) {
@@ -25,12 +22,11 @@ public class BotonMenu extends JButton {
         setContentAreaFilled(false);
         setBorderPainted(false);
         setFocusPainted(false);
-        setFont(new Font("SansSerif", Font.BOLD, 14)); 
-        setForeground(textoNormal);
+        setFont(EstiloUI.fuente(Font.BOLD, 14));
+        setForeground(EstiloUI.TEXTO_MENU);
         setHorizontalAlignment(SwingConstants.LEFT);
         setBorder(BorderFactory.createEmptyBorder(0, 16, 0, 12));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -48,16 +44,14 @@ public class BotonMenu extends JButton {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
-        setForeground(activo ? textoActivo : textoNormal);
+        setForeground(activo ? EstiloUI.ACENTO : EstiloUI.TEXTO_MENU);
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
-       
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
+        EstiloUI.calidad(g2);
         if (activo) {
             g2.setColor(relleno);
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), 24, 24);

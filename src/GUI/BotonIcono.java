@@ -1,12 +1,6 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import javax.swing.JButton;
 
 public class BotonIcono extends JButton {
@@ -36,17 +30,13 @@ public class BotonIcono extends JButton {
     @Override
     protected void paintComponent(Graphics g0) {
         Graphics2D g = (Graphics2D) g0.create();
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
+        EstiloUI.calidad(g);
         int w = getWidth(), h = getHeight();
-        
         if (circulo) {
-            g.setPaint(new GradientPaint(0, 0, new Color(240, 240, 240), w, h, Color.WHITE));
+            g.setPaint(new GradientPaint(0, 0, EstiloUI.ACENTO, w, h, EstiloUI.ACENTO2));
             g.fillOval(0, 0, w, h);
         }
-        
-        g.setColor(circulo ? Color.BLACK : Color.WHITE);
-        
+        g.setColor(circulo ? EstiloUI.TEXTO_SOBRE_ACENTO : Color.WHITE);
         int cx = w / 2, cy = h / 2, s = Math.max(5, w / 5);
 
         switch (tipo) {
