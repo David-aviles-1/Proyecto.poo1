@@ -24,13 +24,11 @@ public class Reproductor extends JFrame {
     private final CardLayout cartas = new CardLayout();
     private final JPanel centro = new JPanel(cartas);
     
-    private final JPanel barra;
     private final JPanel panelAlbumes;
     private final JPanel panelArtistas;
     private final JPanel panelListas;
     private final JPanel panelReproduciendo;
     
-   
     private final BotonMenu btnAlbumes = new BotonMenu("Álbumes");
     private final BotonMenu btnArtistas = new BotonMenu("Artistas");
     private final BotonMenu btnListas = new BotonMenu("Listas de reproducción");
@@ -44,7 +42,6 @@ public class Reproductor extends JFrame {
         getContentPane().setBackground(Color.DARK_GRAY);
         setLayout(new BorderLayout());
 
-        barra = new JPanel();
         panelAlbumes = new JPanel();
         panelArtistas = new JPanel();
         panelListas = new JPanel();
@@ -64,13 +61,8 @@ public class Reproductor extends JFrame {
         add(crearMenuLateral(), BorderLayout.WEST);
         add(centro, BorderLayout.CENTER);
         
-        barra.setPreferredSize(new Dimension(1100, 80));
-        barra.setBackground(Color.BLACK);
-        barra.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 25));
-        JLabel lblControles = new JLabel("[Aquí irán los botones de Play, Pausa, Siguiente]");
-        lblControles.setForeground(Color.WHITE);
-        barra.add(lblControles);
-        add(barra, BorderLayout.SOUTH);
+        BarraReproduccion barraReproduccionVisual = new BarraReproduccion();
+        add(barraReproduccionVisual, BorderLayout.SOUTH);
 
         btnAlbumes.addActionListener(e -> mostrar("albumes"));
         btnArtistas.addActionListener(e -> mostrar("artistas"));
@@ -91,7 +83,6 @@ public class Reproductor extends JFrame {
     private JPanel crearMenuLateral() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        // Fondo oscuro para el menú lateral
         menu.setBackground(new Color(18, 18, 18)); 
         menu.setBorder(BorderFactory.createEmptyBorder(26, 16, 22, 16));
         menu.setPreferredSize(new Dimension(230, 100));
@@ -104,7 +95,6 @@ public class Reproductor extends JFrame {
         menu.add(titulo);
         menu.add(Box.createVerticalStrut(30));
 
-        // AQUÍ USAMOS BotonMenu en el arreglo
         for (BotonMenu b : new BotonMenu[]{btnAlbumes, btnArtistas, btnListas}) {
             b.setAlignmentX(Component.LEFT_ALIGNMENT);
             b.setPreferredSize(new Dimension(180, 44));
@@ -115,12 +105,14 @@ public class Reproductor extends JFrame {
 
         menu.add(Box.createVerticalGlue());
 
-       
         BotonMenu salir = new BotonMenu("Cerrar sesión");
         salir.setAlignmentX(Component.LEFT_ALIGNMENT);
         salir.setPreferredSize(new Dimension(180, 44));
         salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
-        salir.addActionListener(e -> dispose());
+        salir.addActionListener(e -> {
+            new login().setVisible(true);
+            dispose();
+        });
         menu.add(salir);
         
         return menu;
@@ -128,8 +120,6 @@ public class Reproductor extends JFrame {
 
     private void mostrar(String vista) {
         cartas.show(centro, vista);
-        
-        
         btnAlbumes.setActivo(vista.equals("albumes"));
         btnArtistas.setActivo(vista.equals("artistas"));
         btnListas.setActivo(vista.equals("listas"));

@@ -12,10 +12,10 @@ public class BotonMenu extends JButton {
     private boolean encima = false;
     private final Color relleno;
     private final Color textoNormal = Color.LIGHT_GRAY;
-    private final Color textoActivo = Color.WHITE; // El color cuando le das clic
+    private final Color textoActivo = Color.WHITE;
 
     public BotonMenu(String texto) {
-        // Un gris oscuro para el fondo cuando el botón está activo
+        
         this(texto, new Color(40, 40, 40));
     }
 
@@ -25,7 +25,7 @@ public class BotonMenu extends JButton {
         setContentAreaFilled(false);
         setBorderPainted(false);
         setFocusPainted(false);
-        setFont(new Font("SansSerif", Font.BOLD, 14)); // Quitamos EstiloUI.fuente
+        setFont(new Font("SansSerif", Font.BOLD, 14)); 
         setForeground(textoNormal);
         setHorizontalAlignment(SwingConstants.LEFT);
         setBorder(BorderFactory.createEmptyBorder(0, 16, 0, 12));
@@ -55,7 +55,7 @@ public class BotonMenu extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
-        // Esto reemplaza a EstiloUI.calidad(g2) para suavizar los bordes
+       
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         if (activo) {
