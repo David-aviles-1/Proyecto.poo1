@@ -22,7 +22,7 @@ public class AdminFrame extends JFrame {
 
     private final String[] vistas = {"tabla", "agregar", "consultar", "modificar", "eliminar"};
     private final String[] titulos = {"Canciones", "Agregar", "Consultar", "Modificar", "Eliminar"};
-    private final JButton[] botones = new JButton[5]; 
+    private final BotonMenu[] botones = new BotonMenu[5]; 
 
     public AdminFrame() {
         setTitle("Mi Reproductor - Administrador");
@@ -31,7 +31,8 @@ public class AdminFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        Color FONDO = new Color(240, 240, 240); 
+        // Fondo principal oscuro
+        Color FONDO = new Color(18, 18, 18); 
         getContentPane().setBackground(FONDO);
         setLayout(new BorderLayout());
 
@@ -51,29 +52,36 @@ public class AdminFrame extends JFrame {
         add(crearMenuLateral(), BorderLayout.WEST);
         add(centro, BorderLayout.CENTER);
         
-        cartas.show(centro, "tabla");
+        mostrar("tabla");
     }
     
     private void configurarPanelProvisional(JPanel panel, String texto) {
-        panel.setBackground(Color.WHITE);
-        panel.add(new JLabel(texto));
+        panel.setBackground(new Color(18, 18, 18));
+        JLabel label = new JLabel(texto);
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("SansSerif", Font.PLAIN, 24));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
+        panel.add(label);
     }
 
     private JPanel crearMenuLateral() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        menu.setBackground(new Color(220, 220, 220)); 
+        // Fondo del menú lateral negro
+        menu.setBackground(new Color(10, 10, 10)); 
         menu.setBorder(BorderFactory.createEmptyBorder(26, 16, 22, 16));
         menu.setPreferredSize(new Dimension(230, 100));
 
         JLabel titulo = new JLabel("Administrador");
         titulo.setFont(new Font("SansSerif", Font.BOLD, 22));
+        titulo.setForeground(Color.WHITE);
         titulo.setBorder(BorderFactory.createEmptyBorder(0, 16, 0, 0));
         titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         menu.add(titulo);
         
         JLabel sub = new JLabel("Control total del sistema");
         sub.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        sub.setForeground(Color.GRAY);
         sub.setBorder(BorderFactory.createEmptyBorder(2, 16, 0, 0));
         sub.setAlignmentX(Component.LEFT_ALIGNMENT);
         menu.add(sub);
@@ -82,32 +90,41 @@ public class AdminFrame extends JFrame {
 
         for (int i = 0; i < botones.length; i++) {
             final String vista = vistas[i];
-            botones[i] = new JButton(titulos[i]); 
+            botones[i] = new BotonMenu(titulos[i]); 
             
-            botones[i].addActionListener(e -> cartas.show(centro, vista));
+            botones[i].addActionListener(e -> mostrar(vista));
             
-            ajustar(botones[i]);
+            botones[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+            botones[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
             menu.add(botones[i]);
             menu.add(Box.createVerticalStrut(6));
         }
 
         menu.add(Box.createVerticalGlue());
 
-        JButton verReproductor = new JButton("Ver reproductor"); 
-        ajustar(verReproductor);
+        BotonMenu verReproductor = new BotonMenu("Ver reproductor"); 
+        verReproductor.setForeground(Color.GRAY);
+        verReproductor.setAlignmentX(Component.LEFT_ALIGNMENT);
+        verReproductor.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
+        
         menu.add(verReproductor);
         menu.add(Box.createVerticalStrut(6));
 
-        JButton salir = new JButton("Cerrar sesión");
-        ajustar(salir);
+        BotonMenu salir = new BotonMenu("Cerrar sesión");
+        salir.setForeground(Color.GRAY);
+        salir.setAlignmentX(Component.LEFT_ALIGNMENT);
+        salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
+        salir.addActionListener(e -> dispose());
         menu.add(salir);
         
         return menu;
     }
 
-    private void ajustar(JButton b) {
-        b.setAlignmentX(Component.LEFT_ALIGNMENT);
-        b.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
+    private void mostrar(String vista) {
+        cartas.show(centro, vista);
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setActivo(vistas[i].equals(vista));
+        }
     }
     
     public static void main(String[] args) {
