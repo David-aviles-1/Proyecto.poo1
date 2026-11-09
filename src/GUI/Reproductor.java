@@ -24,9 +24,9 @@ public class Reproductor extends JFrame {
     private final CardLayout cartas = new CardLayout();
     private final JPanel centro = new JPanel(cartas);
     
-    private final JPanel panelAlbumes;
-    private final JPanel panelArtistas;
-    private final JPanel panelListas;
+    private final PanelAlbumes panelAlbumes;
+    private final PanelArtistas panelArtistas;
+    private final PanelListas panelListas; // NUEVO: Tu panel de listas real
     private final JPanel panelReproduciendo;
     
     private final BotonMenu btnAlbumes = new BotonMenu("Álbumes");
@@ -39,23 +39,20 @@ public class Reproductor extends JFrame {
         setMinimumSize(new Dimension(1040, 640));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(Color.DARK_GRAY);
+        getContentPane().setBackground(new Color(18, 18, 20)); 
         setLayout(new BorderLayout());
 
-        panelAlbumes = new JPanel();
-        panelArtistas = new JPanel();
-        panelListas = new JPanel();
+        panelAlbumes = new PanelAlbumes(); 
+        panelArtistas = new PanelArtistas();
+        panelListas = new PanelListas(); // NUEVO: Inicializamos tu panel de listas real
         panelReproduciendo = new JPanel();
 
-        configurarPanelProvisional(panelAlbumes, "Vista de Álbumes");
-        configurarPanelProvisional(panelArtistas, "Vista de Artistas");
-        configurarPanelProvisional(panelListas, "Vista de Listas de Reproducción");
         configurarPanelProvisional(panelReproduciendo, "Vista de Reproducción (Detalle)");
 
-        centro.setBackground(Color.DARK_GRAY);
+        centro.setBackground(new Color(18, 18, 20));
         centro.add(panelAlbumes, "albumes");
         centro.add(panelArtistas, "artistas");
-        centro.add(panelListas, "listas");
+        centro.add(panelListas, "listas"); // NUEVO: Lo agregamos al CardLayout
         centro.add(panelReproduciendo, "reproduciendo");
 
         add(crearMenuLateral(), BorderLayout.WEST);
@@ -72,7 +69,7 @@ public class Reproductor extends JFrame {
     }
     
     private void configurarPanelProvisional(JPanel panel, String texto) {
-        panel.setBackground(Color.DARK_GRAY);
+        panel.setBackground(new Color(18, 18, 20));
         JLabel label = new JLabel(texto);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("SansSerif", Font.PLAIN, 24));
@@ -83,7 +80,7 @@ public class Reproductor extends JFrame {
     private JPanel crearMenuLateral() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        menu.setBackground(new Color(18, 18, 18)); 
+        menu.setBackground(new Color(11, 11, 12)); 
         menu.setBorder(BorderFactory.createEmptyBorder(26, 16, 22, 16));
         menu.setPreferredSize(new Dimension(230, 100));
 
@@ -109,6 +106,7 @@ public class Reproductor extends JFrame {
         salir.setAlignmentX(Component.LEFT_ALIGNMENT);
         salir.setPreferredSize(new Dimension(180, 44));
         salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
+        salir.setForeground(new Color(160, 160, 167));
         salir.addActionListener(e -> {
             new login().setVisible(true);
             dispose();

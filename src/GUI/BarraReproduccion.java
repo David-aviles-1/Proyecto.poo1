@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -54,13 +53,13 @@ public class BarraReproduccion extends JPanel {
         JPanel botonesPlay = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
         botonesPlay.setOpaque(false);
         
-        JButton btnAtras = crearBotonControl("⏮");
-        JButton btnPlay = crearBotonControl("▶");
-        JButton btnAdelante = crearBotonControl("⏭");
+        BotonIcono btnAnterior = new BotonIcono(BotonIcono.ANTERIOR, false, 34);
+        BotonIcono btnPlay = new BotonIcono(BotonIcono.PLAY, true, 46);
+        BotonIcono btnSiguiente = new BotonIcono(BotonIcono.SIGUIENTE, false, 34);
         
-        botonesPlay.add(btnAtras);
+        botonesPlay.add(btnAnterior);
         botonesPlay.add(btnPlay);
-        botonesPlay.add(btnAdelante);
+        botonesPlay.add(btnSiguiente);
         
         JPanel panelTiempo = new JPanel(new BorderLayout(10, 0));
         panelTiempo.setOpaque(false);
@@ -99,16 +98,5 @@ public class BarraReproduccion extends JPanel {
         add(panelInfo, BorderLayout.WEST);
         add(panelControles, BorderLayout.CENTER);
         add(panelVolumen, BorderLayout.EAST);
-    }
-    
-    private JButton crearBotonControl(String icono) {
-        JButton btn = new JButton(icono);
-        btn.setFont(new Font("SansSerif", Font.PLAIN, 24));
-        btn.setForeground(Color.WHITE);
-        btn.setContentAreaFilled(false);
-        btn.setBorderPainted(false);
-        btn.setFocusPainted(false);
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        return btn;
     }
 }
