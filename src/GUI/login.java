@@ -13,11 +13,11 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-
 /**
  *
  * @author oswaldo
  */
+
 public class login extends JFrame {
 
     private JTextField txtUsuario;
@@ -26,6 +26,9 @@ public class login extends JFrame {
 
     public login() {
         super("Login - Reproductor");
+        setSize(450, 520);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBackground(new Color(25, 20, 30));
@@ -66,15 +69,12 @@ public class login extends JFrame {
         btnSignIn.setFocusPainted(false);
         cardPanel.add(btnSignIn);
 
-        btnSignIn.addActionListener(
-                new ActionListener() 
-        {
+        btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evento) {
                 validarLogin();
             }
-        } 
-        ); 
+        }); 
         
         JLabel lblRolInfo = new JLabel("Admin o usuario normal segun tu cuenta", SwingConstants.CENTER);
         lblRolInfo.setForeground(new Color(170, 160, 180));
@@ -106,12 +106,21 @@ public class login extends JFrame {
         }
 
         if (esAdmin) {
-            JOptionPane.showMessageDialog(this, "¡Bienvenido Administrador!");
-            this.dispose(); 
+            AdminFrame ventanaAdmin = new AdminFrame();
+            ventanaAdmin.setVisible(true);
+            this.dispose();
         } else {
             Reproductor ventanaUsuario = new Reproductor();
             ventanaUsuario.setVisible(true);
             this.dispose();
         }
+    }
+    
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new login().setVisible(true);
+            }
+        });
     }
 }

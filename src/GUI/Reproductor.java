@@ -5,19 +5,20 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.SwingUtilities;
 /**
  *
  * @author oswaldo
  */
+
 public class Reproductor extends JFrame {
 
     private final CardLayout cartas = new CardLayout();
@@ -29,11 +30,10 @@ public class Reproductor extends JFrame {
     private final JPanel panelListas;
     private final JPanel panelReproduciendo;
     
-    private final JButton btnAlbumes = new JButton("Albumes");
-    private final JButton btnArtistas = new JButton("Artistas");
-    private final JButton btnListas = new JButton("Listas de reproduccion");
-    
-    private String ultimaVista = "albumes";
+   
+    private final BotonMenu btnAlbumes = new BotonMenu("Álbumes");
+    private final BotonMenu btnArtistas = new BotonMenu("Artistas");
+    private final BotonMenu btnListas = new BotonMenu("Listas de reproducción");
     
     public Reproductor() {
         setTitle("Reproductor");
@@ -50,6 +50,11 @@ public class Reproductor extends JFrame {
         panelListas = new JPanel();
         panelReproduciendo = new JPanel();
 
+        configurarPanelProvisional(panelAlbumes, "Vista de Álbumes");
+        configurarPanelProvisional(panelArtistas, "Vista de Artistas");
+        configurarPanelProvisional(panelListas, "Vista de Listas de Reproducción");
+        configurarPanelProvisional(panelReproduciendo, "Vista de Reproducción (Detalle)");
+
         centro.setBackground(Color.DARK_GRAY);
         centro.add(panelAlbumes, "albumes");
         centro.add(panelArtistas, "artistas");
@@ -61,6 +66,10 @@ public class Reproductor extends JFrame {
         
         barra.setPreferredSize(new Dimension(1100, 80));
         barra.setBackground(Color.BLACK);
+        barra.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 25));
+        JLabel lblControles = new JLabel("[Aquí irán los botones de Play, Pausa, Siguiente]");
+        lblControles.setForeground(Color.WHITE);
+        barra.add(lblControles);
         add(barra, BorderLayout.SOUTH);
 
         btnAlbumes.addActionListener(e -> mostrar("albumes"));
@@ -70,14 +79,24 @@ public class Reproductor extends JFrame {
         mostrar("albumes");
     }
     
+    private void configurarPanelProvisional(JPanel panel, String texto) {
+        panel.setBackground(Color.DARK_GRAY);
+        JLabel label = new JLabel(texto);
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("SansSerif", Font.PLAIN, 24));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
+        panel.add(label);
+    }
+    
     private JPanel crearMenuLateral() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        menu.setBackground(Color.GRAY);
+        // Fondo oscuro para el menú lateral
+        menu.setBackground(new Color(18, 18, 18)); 
         menu.setBorder(BorderFactory.createEmptyBorder(26, 16, 22, 16));
         menu.setPreferredSize(new Dimension(230, 100));
 
-        JLabel titulo = new JLabel("Mi Musica");
+        JLabel titulo = new JLabel("Mi Música");
         titulo.setFont(new Font("SansSerif", Font.BOLD, 22));
         titulo.setForeground(Color.WHITE);
         titulo.setBorder(BorderFactory.createEmptyBorder(0, 16, 0, 0));
@@ -85,7 +104,8 @@ public class Reproductor extends JFrame {
         menu.add(titulo);
         menu.add(Box.createVerticalStrut(30));
 
-        for (JButton b : new JButton[]{btnAlbumes, btnArtistas, btnListas}) {
+        // AQUÍ USAMOS BotonMenu en el arreglo
+        for (BotonMenu b : new BotonMenu[]{btnAlbumes, btnArtistas, btnListas}) {
             b.setAlignmentX(Component.LEFT_ALIGNMENT);
             b.setPreferredSize(new Dimension(180, 44));
             b.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
@@ -95,19 +115,29 @@ public class Reproductor extends JFrame {
 
         menu.add(Box.createVerticalGlue());
 
-        JButton salir = new JButton("Cerrar sesion");
+       
+        BotonMenu salir = new BotonMenu("Cerrar sesión");
         salir.setAlignmentX(Component.LEFT_ALIGNMENT);
         salir.setPreferredSize(new Dimension(180, 44));
         salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
-        salir.addActionListener(e -> {
-            dispose();
-        });
+        salir.addActionListener(e -> dispose());
         menu.add(salir);
+        
         return menu;
     }
 
     private void mostrar(String vista) {
-        ultimaVista = vista;
         cartas.show(centro, vista);
+        
+        
+        btnAlbumes.setActivo(vista.equals("albumes"));
+        btnArtistas.setActivo(vista.equals("artistas"));
+        btnListas.setActivo(vista.equals("listas"));
+    }
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new Reproductor().setVisible(true);
+        });
     }
 }
