@@ -2,14 +2,21 @@
 c7	Barry Bonds	Hip-Hop	Kanye West	2007	Graduation	3:19	datos/imagenes/c7.jpg	datos/pdf/c7.pdf
 c6	Can’t Tell Me Nothing	Hip-Hop	Kanye West	2007	Graduation	4:31	datos/imagenes/c6.jpg	datos/pdf/c6.pdf
 c2	Champion	Hip-Hop	Kanye West	2007	Graduation	2:42	datos/imagenes/c2.jpg	datos/pdf/c2.pdf
+c19	cut hands	Metal	Deftones	2025	Private Music	3:01	datos/imagenes/c19.jpg	datos/pdf/c19.pdf
+c16	cXz	Metal	Deftones	2025	Private Music	3:12	datos/imagenes/c16.jpg	datos/pdf/c16.pdf
+c21	departing the body	Metal	Deftones	2025	Private Music	5:59	datos/imagenes/c21.jpg	datos/pdf/c21.pdf
 c13	ecdysis	Metal	Deftones	2025	Private Music	3:28	datos/imagenes/c13.jpg	datos/pdf/c13.pdf
 c8	Flashing Lights	Hip-Hop	Kanye West	2007	Graduation	3:52	datos/imagenes/c8.jpg	datos/pdf/c8.pdf
 c5	Good Life	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c5.jpg	datos/pdf/c5.pdf
 c1	Good Morning	Hip-Hop	Kanye West	2007	Graduation	3:10	datos/imagenes/c1.jpg	datos/pdf/c1.pdf
 c10	homecoming	Hip-Hop	Kanye West	2007	Graduation	3:18	datos/imagenes/c10.jpg	datos/pdf/c10.pdf
 c14	infinite source	Metal	Deftones	2025	Private Music	3:32	datos/imagenes/c14.jpg	datos/pdf/c14.pdf
+c17	i think about you all the time	Metal	Deftones	2025	Private Music	4:08	datos/imagenes/c17.jpg	datos/pdf/c17.pdf
 c4	I Wonder	Hip-Hop	Kanye West	2007	Graduation	4:03	datos/imagenes/c4.jpg	datos/pdf/c4.pdf
 c12	locked club	Metal	Deftones	2025	Private Music	2:52	datos/imagenes/c12.jpg	datos/pdf/c12.pdf
+c20	metal dream	Metal	Deftones	2025	Private Music	3:02	datos/imagenes/c20.jpg	datos/pdf/c20.pdf
+c18	milk of the madonna	Metal	Deftones	2025	Private Music	4:08	datos/imagenes/c18.jpg	datos/pdf/c18.pdf
 c11	my mind is a mountain	Metal	Deftones	2025	Private Music	2:50	datos/imagenes/c11.jpg	datos/pdf/c11.pdf
+c15	souvenir	Metal	Deftones	2025	Private Music	6:10	datos/imagenes/c15.jpg	datos/pdf/c15.pdf
 c3	Stronger	Hip-Hop	Kanye West	2007	Graduation	5:06	datos/imagenes/c3.jpg	datos/pdf/c3.pdf
 c9	The Glory	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c9.jpg	datos/pdf/c9.pdf
