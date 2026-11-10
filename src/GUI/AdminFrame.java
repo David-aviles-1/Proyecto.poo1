@@ -78,7 +78,7 @@ public class AdminFrame extends JFrame {
 
         BotonMenu verReproductor = new BotonMenu("Ver reproductor");
         verReproductor.setForeground(EstiloUI.TEXTO_SUAVE);
-        verReproductor.addActionListener(e -> new ReproductorFrame(ctrl).setVisible(true));
+        verReproductor.addActionListener(e -> new Reproductor(ctrl).setVisible(true));
         ajustar(verReproductor);
         menu.add(verReproductor);
         menu.add(Box.createVerticalStrut(6));
@@ -86,7 +86,7 @@ public class AdminFrame extends JFrame {
         BotonMenu salir = new BotonMenu("Cerrar sesión");
         salir.setForeground(EstiloUI.TEXTO_SUAVE);
         salir.addActionListener(e -> {
-            new LoginFrame().setVisible(true);
+            new loginFrame().setVisible(true);
             dispose();
         });
         ajustar(salir);

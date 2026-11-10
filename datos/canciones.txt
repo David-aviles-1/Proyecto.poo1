@@ -1,0 +1,2 @@
+# clave<TAB>titulo<TAB>genero<TAB>artista<TAB>anio<TAB>album<TAB>duracion<TAB>imagen<TAB>pdf
+c1	Good Morning	Hip-Hop	Kanye West	2006	Graduation	3:10	datos/imagenes/c1.jpg	datos/pdf/c1.pdf

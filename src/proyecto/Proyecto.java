@@ -1,6 +1,6 @@
 package proyecto;
 
-import GUI.login;
+import GUI.loginFrame;
 import javax.swing.JFrame;
 
 /**
@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 public class Proyecto {
 
     public static void main(String args[]) {
-        login marcoLogin = new login();
+        loginFrame marcoLogin = new loginFrame();
         marcoLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marcoLogin.setSize(450, 500); 
         marcoLogin.setLocationRelativeTo(null); 

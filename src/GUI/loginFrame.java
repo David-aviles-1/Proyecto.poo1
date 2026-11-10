@@ -1,5 +1,7 @@
 package GUI;
 
+import control.ControladorCanciones;
+import control.ControladorUsuarios;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -18,13 +20,14 @@ import javax.swing.BorderFactory;
  * @author oswaldo
  */
 
-public class login extends JFrame {
+public class loginFrame extends JFrame {
 
     private JTextField txtUsuario;
     private JPasswordField txcontrasena;
     private JButton btnSignIn;
+    private final ControladorUsuarios usuarios = new ControladorUsuarios();
 
-    public login() {
+    public loginFrame() {
         super("Login - Reproductor");
         setSize(450, 520);
         setLocationRelativeTo(null);
@@ -95,22 +98,20 @@ public class login extends JFrame {
             return;
         }
 
-        boolean esAdmin = false;
-        if (usuario.equalsIgnoreCase("admin") && password.equals("admin123")) {
-            esAdmin = true;
-        } else if (usuario.equalsIgnoreCase("usuario") && password.equals("usuario123")) {
-            esAdmin = false;
-        } else {
+        String rol = usuarios.iniciarSesion(usuario, password);
+        if (rol == null) {
             JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            txcontrasena.setText("");
             return;
         }
 
-        if (esAdmin) {
-            AdminFrame ventanaAdmin = new AdminFrame();
+        ControladorCanciones canciones = new ControladorCanciones();
+        if (rol.equals(ControladorUsuarios.ROL_ADMIN)) {
+            AdminFrame ventanaAdmin = new AdminFrame(canciones);
             ventanaAdmin.setVisible(true);
             this.dispose();
         } else {
-            Reproductor ventanaUsuario = new Reproductor();
+            Reproductor ventanaUsuario = new Reproductor(canciones);
             ventanaUsuario.setVisible(true);
             this.dispose();
         }
@@ -119,7 +120,7 @@ public class login extends JFrame {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                new loginFrame().setVisible(true);
             }
         });
     }

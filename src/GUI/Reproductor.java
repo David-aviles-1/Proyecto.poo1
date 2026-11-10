@@ -1,5 +1,6 @@
 package GUI;
 
+import control.ControladorCanciones;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,16 +25,25 @@ public class Reproductor extends JFrame {
     private final CardLayout cartas = new CardLayout();
     private final JPanel centro = new JPanel(cartas);
     
+    private final ControladorCanciones ctrl;
+    private final BarraReproduccion barra;
     private final PanelAlbumes panelAlbumes;
     private final PanelArtistas panelArtistas;
-    private final PanelListas panelListas; // NUEVO: Tu panel de listas real
-    private final JPanel panelReproduciendo;
+    private final PanelListas panelListas;
+    private final PanelReproduciendo panelReproduciendo;
     
     private final BotonMenu btnAlbumes = new BotonMenu("Álbumes");
     private final BotonMenu btnArtistas = new BotonMenu("Artistas");
     private final BotonMenu btnListas = new BotonMenu("Listas de reproducción");
+
+    private String ultimaVista = "albumes";
     
     public Reproductor() {
+        this(new ControladorCanciones());
+    }
+
+    public Reproductor(ControladorCanciones ctrl) {
+        this.ctrl = ctrl;
         setTitle("Reproductor");
         setSize(1100, 720);
         setMinimumSize(new Dimension(1040, 640));
@@ -42,39 +52,31 @@ public class Reproductor extends JFrame {
         getContentPane().setBackground(new Color(18, 18, 20)); 
         setLayout(new BorderLayout());
 
-        panelAlbumes = new PanelAlbumes(); 
-        panelArtistas = new PanelArtistas();
-        panelListas = new PanelListas(); // NUEVO: Inicializamos tu panel de listas real
-        panelReproduciendo = new JPanel();
-
-        configurarPanelProvisional(panelReproduciendo, "Vista de Reproducción (Detalle)");
+        barra = new BarraReproduccion(ctrl);
+        panelAlbumes = new PanelAlbumes(ctrl, barra::reproducir);
+        panelArtistas = new PanelArtistas(ctrl, barra::reproducir);
+        panelListas = new PanelListas(ctrl, barra::reproducir);
+        panelReproduciendo = new PanelReproduciendo(() -> mostrar(ultimaVista));
 
         centro.setBackground(new Color(18, 18, 20));
         centro.add(panelAlbumes, "albumes");
         centro.add(panelArtistas, "artistas");
-        centro.add(panelListas, "listas"); // NUEVO: Lo agregamos al CardLayout
+        centro.add(panelListas, "listas");
         centro.add(panelReproduciendo, "reproduciendo");
 
         add(crearMenuLateral(), BorderLayout.WEST);
         add(centro, BorderLayout.CENTER);
         
-        BarraReproduccion barraReproduccionVisual = new BarraReproduccion();
-        add(barraReproduccionVisual, BorderLayout.SOUTH);
+        add(barra, BorderLayout.SOUTH);
 
         btnAlbumes.addActionListener(e -> mostrar("albumes"));
         btnArtistas.addActionListener(e -> mostrar("artistas"));
         btnListas.addActionListener(e -> mostrar("listas"));
+
+        barra.setAlCambiarCancion(panelReproduciendo::mostrar);
+        barra.setAlAbrirDetalle(this::mostrarDetalle);
         
         mostrar("albumes");
-    }
-    
-    private void configurarPanelProvisional(JPanel panel, String texto) {
-        panel.setBackground(new Color(18, 18, 20));
-        JLabel label = new JLabel(texto);
-        label.setForeground(Color.WHITE);
-        label.setFont(new Font("SansSerif", Font.PLAIN, 24));
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
-        panel.add(label);
     }
     
     private JPanel crearMenuLateral() {
@@ -108,7 +110,7 @@ public class Reproductor extends JFrame {
         salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
         salir.setForeground(new Color(160, 160, 167));
         salir.addActionListener(e -> {
-            new login().setVisible(true);
+            new loginFrame().setVisible(true);
             dispose();
         });
         menu.add(salir);
@@ -117,10 +119,29 @@ public class Reproductor extends JFrame {
     }
 
     private void mostrar(String vista) {
+        ultimaVista = vista;
+        switch (vista) {
+            case "albumes":
+                panelAlbumes.actualizar();
+                break;
+            case "artistas":
+                panelArtistas.actualizar();
+                break;
+            default:
+                panelListas.actualizar();
+                break;
+        }
         cartas.show(centro, vista);
         btnAlbumes.setActivo(vista.equals("albumes"));
         btnArtistas.setActivo(vista.equals("artistas"));
         btnListas.setActivo(vista.equals("listas"));
+    }
+
+    private void mostrarDetalle() {
+        cartas.show(centro, "reproduciendo");
+        btnAlbumes.setActivo(false);
+        btnArtistas.setActivo(false);
+        btnListas.setActivo(false);
     }
     
     public static void main(String[] args) {
