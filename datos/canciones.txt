@@ -1,2 +1,15 @@
 # clave<TAB>titulo<TAB>genero<TAB>artista<TAB>anio<TAB>album<TAB>duracion<TAB>imagen<TAB>pdf
-c1	Good Morning	Hip-Hop	Kanye West	2006	Graduation	3:10	datos/imagenes/c1.jpg	datos/pdf/c1.pdf
+c7	Barry Bonds	Hip-Hop	Kanye West	2007	Graduation	3:19	datos/imagenes/c7.jpg	datos/pdf/c7.pdf
+c6	Can’t Tell Me Nothing	Hip-Hop	Kanye West	2007	Graduation	4:31	datos/imagenes/c6.jpg	datos/pdf/c6.pdf
+c2	Champion	Hip-Hop	Kanye West	2007	Graduation	2:42	datos/imagenes/c2.jpg	datos/pdf/c2.pdf
+c13	ecdysis	Metal	Deftones	2025	Private Music	3:28	datos/imagenes/c13.jpg	datos/pdf/c13.pdf
+c8	Flashing Lights	Hip-Hop	Kanye West	2007	Graduation	3:52	datos/imagenes/c8.jpg	datos/pdf/c8.pdf
+c5	Good Life	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c5.jpg	datos/pdf/c5.pdf
+c1	Good Morning	Hip-Hop	Kanye West	2007	Graduation	3:10	datos/imagenes/c1.jpg	datos/pdf/c1.pdf
+c10	homecoming	Hip-Hop	Kanye West	2007	Graduation	3:18	datos/imagenes/c10.jpg	datos/pdf/c10.pdf
+c14	infinite source	Metal	Deftones	2025	Private Music	3:32	datos/imagenes/c14.jpg	datos/pdf/c14.pdf
+c4	I Wonder	Hip-Hop	Kanye West	2007	Graduation	4:03	datos/imagenes/c4.jpg	datos/pdf/c4.pdf
+c12	locked club	Metal	Deftones	2025	Private Music	2:52	datos/imagenes/c12.jpg	datos/pdf/c12.pdf
+c11	my mind is a mountain	Metal	Deftones	2025	Private Music	2:50	datos/imagenes/c11.jpg	datos/pdf/c11.pdf
+c3	Stronger	Hip-Hop	Kanye West	2007	Graduation	5:06	datos/imagenes/c3.jpg	datos/pdf/c3.pdf
+c9	The Glory	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c9.jpg	datos/pdf/c9.pdf
