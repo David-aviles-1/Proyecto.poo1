@@ -1,3 +1,0 @@
-# usuario<TAB>contrasena<TAB>rol (admin o normal)
-admin	admin123	admin
-usuario	usuario123	normal

@@ -1,2 +1,0 @@
-# nombre<TAB>clave1;clave2;clave3
-asd	
