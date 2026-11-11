@@ -1,10 +1,12 @@
 # clave<TAB>titulo<TAB>genero<TAB>artista<TAB>anio<TAB>album<TAB>duracion<TAB>imagen<TAB>pdf
 c7	Barry Bonds	Hip-Hop	Kanye West	2007	Graduation	3:19	datos/imagenes/c7.jpg	datos/pdf/c7.pdf
+c23	Body	Hip-Hop	Don Toliver	2026	Octane	2:35	datos/imagenes/c23.jpeg	datos/pdf/c23.pdf
 c6	Can’t Tell Me Nothing	Hip-Hop	Kanye West	2007	Graduation	4:31	datos/imagenes/c6.jpg	datos/pdf/c6.pdf
 c2	Champion	Hip-Hop	Kanye West	2007	Graduation	2:42	datos/imagenes/c2.jpg	datos/pdf/c2.pdf
 c19	cut hands	Metal	Deftones	2025	Private Music	3:01	datos/imagenes/c19.jpg	datos/pdf/c19.pdf
 c16	cXz	Metal	Deftones	2025	Private Music	3:12	datos/imagenes/c16.jpg	datos/pdf/c16.pdf
 c21	departing the body	Metal	Deftones	2025	Private Music	5:59	datos/imagenes/c21.jpg	datos/pdf/c21.pdf
+c22	E85	Hip-Hop	Don Toliver	2026	Octane	2:03	datos/imagenes/c22.jpeg	datos/pdf/c22.pdf
 c13	ecdysis	Metal	Deftones	2025	Private Music	3:28	datos/imagenes/c13.jpg	datos/pdf/c13.pdf
 c8	Flashing Lights	Hip-Hop	Kanye West	2007	Graduation	3:52	datos/imagenes/c8.jpg	datos/pdf/c8.pdf
 c5	Good Life	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c5.jpg	datos/pdf/c5.pdf
@@ -17,6 +19,7 @@ c12	locked club	Metal	Deftones	2025	Private Music	2:52	datos/imagenes/c12.jpg	da
 c20	metal dream	Metal	Deftones	2025	Private Music	3:02	datos/imagenes/c20.jpg	datos/pdf/c20.pdf
 c18	milk of the madonna	Metal	Deftones	2025	Private Music	4:08	datos/imagenes/c18.jpg	datos/pdf/c18.pdf
 c11	my mind is a mountain	Metal	Deftones	2025	Private Music	2:50	datos/imagenes/c11.jpg	datos/pdf/c11.pdf
+c24	Rendezvous	Hip-Hop	Don Toliver	2026	Octane	2:26	datos/imagenes/c24.jpeg	datos/pdf/c24.pdf
 c15	souvenir	Metal	Deftones	2025	Private Music	6:10	datos/imagenes/c15.jpg	datos/pdf/c15.pdf
 c3	Stronger	Hip-Hop	Kanye West	2007	Graduation	5:06	datos/imagenes/c3.jpg	datos/pdf/c3.pdf
 c9	The Glory	Hip-Hop	Kanye West	2007	Graduation	3:27	datos/imagenes/c9.jpg	datos/pdf/c9.pdf

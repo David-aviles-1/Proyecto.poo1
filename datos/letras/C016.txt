@@ -1,0 +1,36 @@
+[Letra de ejemplo para pruebas del sistema]
+Texto original del proyecto; no es la letra oficial de "Billie Jean".
+
+[Verso 1]
+Las noches son más cortas si me quedo a cantar,
+las calles se me alargan si dejo de soñar,
+pero en cada estribillo vuelvo a empezar
+y encuentro mi lugar.
+
+[Estribillo]
+Camino despacio bajo luces de ciudad,
+buscando en cada esquina un poco de verdad,
+y el ritmo de mis pasos me empieza a susurrar
+que todo lo perdido se puede recuperar.
+
+[Verso 2]
+Las noches son más cortas si me quedo a cantar,
+las calles se me alargan si dejo de soñar,
+pero en cada estribillo vuelvo a empezar
+y encuentro mi lugar.
+
+[Estribillo]
+Camino despacio bajo luces de ciudad,
+buscando en cada esquina un poco de verdad,
+y el ritmo de mis pasos me empieza a susurrar
+que todo lo perdido se puede recuperar.
+
+[Puente]
+Las noches son más cortas si me quedo a cantar,
+las calles se me alargan si dejo de soñar,
+pero en cada estribillo vuelvo a empezar
+y encuentro mi lugar.
+
+[Final]
+Billie Jean, Billie Jean...
+(Michael Jackson)
